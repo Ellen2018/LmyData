@@ -18,9 +18,9 @@ public class LmyData {
     }
 
     /**
-     * 发起同步请求
+     * 发起请求
      */
-    public void startSynchronizeRequest(Callback callback){
+    public void startRequest(Callback callback){
         //这里网路请求是发生在子线程中的
         ExecutorService fixedThreadPool = Executors.newFixedThreadPool(1);
 
@@ -28,14 +28,18 @@ public class LmyData {
             @Override
             public void run() {
                 LmyHttpsEmulator lmyHttpsEmulator = LmyEmulator.getInstance().findLmyHttpsEmulator(requestParams);
-                if(lmyHttpsEmulator == null){
-                    callback.onError("您没有配置对应的Https接口："+requestParams.getUrl());
+                if(lmyHttpsEmulator.type() != requestParams.getRequestType()){
+                    callback.onError("请求方式错误："+requestParams.getRequestType());
                 }else {
-                    String json = lmyHttpsEmulator.json(requestParams);
-                    ResponseBody responseBody = new ResponseBody();
-                    responseBody.setCode(200);
-                    responseBody.setBody(json);
-                    callback.onSuccess(responseBody);
+                    if (lmyHttpsEmulator == null) {
+                        callback.onError("您没有配置对应的Https接口：" + requestParams.getUrl());
+                    } else {
+                        String json = lmyHttpsEmulator.json(requestParams);
+                        ResponseBody responseBody = new ResponseBody();
+                        responseBody.setCode(200);
+                        responseBody.setBody(json);
+                        callback.onSuccess(responseBody);
+                    }
                 }
             }
         });

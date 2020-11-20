@@ -17,15 +17,13 @@ public class MainActivity extends AppCompatActivity {
 
         //配置请求参数
         RequestParams requestParams = new RequestParams.Build()
-                .setRequestType(RequestParams.RequestType.Get)
-                .addPostFieldValue("user_account","ellen")
-                .addPostFieldValue("user_password","123123")
-                .setUrl("https://www.chen.com")
+                .setUrl("https://www.chen.com?account=ellen&pawwsord=123456")
+                .get()//请求方式为get
                 .build();
 
         //开始发起同步请求
         lmyData.setRequestParams(requestParams)
-                .startSynchronizeRequest(new LmyData.Callback() {
+                .startRequest(new LmyData.Callback() {
             @Override
             public void onSuccess(ResponseBody responseBody) {
                 //请求成功

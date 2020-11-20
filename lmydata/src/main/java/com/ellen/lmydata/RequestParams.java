@@ -1,5 +1,7 @@
 package com.ellen.lmydata;
 
+import androidx.annotation.NonNull;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -65,27 +67,19 @@ public class RequestParams {
         private String url;
         private RequestType requestType;
 
-        public Build setUrl(String url) {
+        public Build setUrl(@NonNull String url) {
             this.url = url;
             return this;
         }
 
-        public Build setRequestType(RequestType requestType) {
-            this.requestType = requestType;
+        public Build get(){
+            requestType = RequestType.Get;
             return this;
         }
 
-        public Build addPostFieldValue(String fieldName,Object value){
-            if(postFieldValues == null){
-                postFieldValues = new HashMap<>();
-            }
-            postFieldValues.put(fieldName,value);
-            return this;
-        }
-
-        public Build removePostFieldValue(String fieldName){
-            if(postFieldValues == null)return this;
-            postFieldValues.remove(fieldName);
+        public Build post(@NonNull Map<String, Object> fieldValues){
+            postFieldValues = fieldValues;
+            requestType = RequestType.POST;
             return this;
         }
 
