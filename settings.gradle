@@ -1,0 +1,3 @@
+include ':lmydata'
+include ':app'
+rootProject.name = "LmyData"
