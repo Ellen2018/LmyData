@@ -2,7 +2,6 @@ package com.ellen.lmydata;
 
 import androidx.annotation.NonNull;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -24,18 +23,6 @@ public class RequestParams {
      * 请求的类型
      */
     private RequestType requestType;
-
-    public void addPostFieldValue(String fieldName,Object value){
-        if(postFieldValues == null){
-            postFieldValues = new HashMap<>();
-        }
-        postFieldValues.put(fieldName,value);
-    }
-
-    public void removePostFieldValue(String fieldName){
-        if(postFieldValues == null)return;
-        postFieldValues.remove(fieldName);
-    }
 
     public Map<String, Object> getPostFieldValues() {
         return postFieldValues;
