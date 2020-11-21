@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -15,10 +18,14 @@ public class MainActivity extends AppCompatActivity {
 
         LmyData lmyData = new LmyData();
 
+        Map<String,Object> map = new HashMap<>();
+        map.put("account","ellen1");
+        map.put("password","2");
+
         //配置请求参数
         RequestParams requestParams = new RequestParams.Build()
                 .setUrl("https://www.chen.com?account=ellen&pawwsord=123456")
-                .get()//请求方式为get
+                .post(map)//请求方式为get
                 .build();
 
         //开始发起同步请求

@@ -5,13 +5,18 @@ import com.google.gson.Gson;
 public class LoginHttpsEmulator implements LmyHttpsEmulator {
 
     @Override
+    public void initData() {
+
+    }
+
+    @Override
     public String url() {
         return "https://www.chen.com";
     }
 
     @Override
     public RequestParams.RequestType type() {
-        return RequestParams.RequestType.Get;
+        return RequestParams.RequestType.POST;
     }
 
     @Override
@@ -24,5 +29,4 @@ public class LoginHttpsEmulator implements LmyHttpsEmulator {
         loginBean.setMessage("登录成功!");
         return gson.toJson(loginBean);
     }
-
 }
