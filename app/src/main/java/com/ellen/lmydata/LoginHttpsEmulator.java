@@ -1,9 +1,6 @@
 package com.ellen.lmydata;
 
-import android.util.Log;
-
 import com.ellen.dhcsqlitelibrary.table.impl.ZxyLibrary;
-import com.ellen.dhcsqlitelibrary.table.operate.create.OnCreateTableCallback;
 import com.ellen.lmydata.sql.LoginTable;
 import com.ellen.sqlitecreate.createsql.helper.WhereSymbolEnum;
 import com.ellen.sqlitecreate.createsql.where.Where;
@@ -39,14 +36,14 @@ public class LoginHttpsEmulator implements LmyHttpsEmulator {
 
     @Override
     public RequestParams.RequestType type() {
-        return RequestParams.RequestType.POST;
+        return RequestParams.RequestType.GET;
     }
 
     @Override
     public String json(RequestParams requestParams) {
         Gson gson = new Gson();
-        String account = (String) requestParams.getPostFieldValues().get("account");
-        String password = (String) requestParams.getPostFieldValues().get("password");
+        String account = (String) requestParams.getGetFieldValues().get("account");
+        String password = (String) requestParams.getGetFieldValues().get("password");
         String searchSql = Where.getInstance(false)
                 .addAndWhereValue("account", WhereSymbolEnum.EQUAL, account)
                 .addAndWhereValue("password", WhereSymbolEnum.EQUAL, password)

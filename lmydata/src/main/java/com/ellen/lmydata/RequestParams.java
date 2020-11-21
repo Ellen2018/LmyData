@@ -10,9 +10,14 @@ import java.util.Map;
 public class RequestParams {
 
     /**
-     * 存储字段类型(Post请求方式)
+     * 存储字段类型 & 值(Post请求方式)
      */
     private Map<String,Object> postFieldValues;
+
+    /**
+     * 存储字段类型 & 值(Get请求方式)
+     */
+    private Map<String,Object> getFieldValues;
 
     /**
      * 请求的地址
@@ -30,6 +35,14 @@ public class RequestParams {
 
     public void setPostFieldValues(Map<String, Object> postFieldValues) {
         this.postFieldValues = postFieldValues;
+    }
+
+    public Map<String, Object> getGetFieldValues() {
+        return getFieldValues;
+    }
+
+    public void setGetFieldValues(Map<String, Object> getFieldValues) {
+        this.getFieldValues = getFieldValues;
     }
 
     public String getUrl() {
@@ -51,6 +64,7 @@ public class RequestParams {
     public static class Build{
 
         private Map<String,Object> postFieldValues;
+        private Map<String,Object> getFieldValues;
         private String url;
         private RequestType requestType;
 
@@ -59,8 +73,9 @@ public class RequestParams {
             return this;
         }
 
-        public Build get(){
-            requestType = RequestType.Get;
+        public Build get(Map<String, Object> fieldValues){
+            getFieldValues = fieldValues;
+            requestType = RequestType.GET;
             return this;
         }
 
@@ -73,6 +88,7 @@ public class RequestParams {
         public RequestParams build(){
             RequestParams requestParams = new RequestParams();
             requestParams.postFieldValues = postFieldValues;
+            requestParams.getFieldValues = getFieldValues;
             requestParams.requestType = requestType;
             requestParams.url = url;
             return requestParams;
@@ -82,6 +98,6 @@ public class RequestParams {
 
     enum RequestType{
         POST,
-        Get;
+        GET;
     }
 }

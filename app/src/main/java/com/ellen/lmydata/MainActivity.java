@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         //配置请求参数
         RequestParams requestParams = new RequestParams.Build()
                 .setUrl("https://www.chen.com")
-                .post(map)//请求方式为get
+                .get(map)//请求方式为get
                 .build();
 
         //开始发起同步请求
