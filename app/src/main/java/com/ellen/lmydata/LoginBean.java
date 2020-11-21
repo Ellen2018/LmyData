@@ -1,10 +1,13 @@
 package com.ellen.lmydata;
 
+import com.ellen.dhcsqlitelibrary.table.annotation.field.bound.MajorKey;
+
 public class LoginBean {
     private int code;
     private String message;
     private String userName;
     private String imgUrl;
+    @MajorKey
     private String account;
     private String password;
 

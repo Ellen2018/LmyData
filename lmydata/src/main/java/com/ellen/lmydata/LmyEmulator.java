@@ -1,5 +1,7 @@
 package com.ellen.lmydata;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +12,7 @@ public class LmyEmulator {
 
     private volatile static LmyEmulator instance;
     private volatile List<LmyHttpsEmulator> lmyHttpsEmulatorList;
+    private SharePreferenceHelper sharePreferenceHelper;
 
     private LmyEmulator(){}
 
@@ -25,13 +28,20 @@ public class LmyEmulator {
         return instance;
     }
 
+    public void init(Context context){
+        sharePreferenceHelper = new SharePreferenceHelper(context,"lmy_key_value_save");
+    }
+
     public LmyEmulator addHttpsEmulator(LmyHttpsEmulator lmyHttpsEmulator){
         lmyHttpsEmulatorList.add(lmyHttpsEmulator);
+        lmyHttpsEmulator.initData(sharePreferenceHelper.getValue(lmyHttpsEmulator.url(),false));
+        sharePreferenceHelper.save(lmyHttpsEmulator.url(),true);
         return this;
     }
 
     public LmyEmulator removeHttpsEmulator(LmyHttpsEmulator lmyHttpsEmulator){
         lmyHttpsEmulatorList.remove(lmyHttpsEmulator);
+        sharePreferenceHelper.deleteKey(lmyHttpsEmulator.url());
         return this;
     }
 

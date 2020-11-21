@@ -5,7 +5,7 @@ public interface LmyHttpsEmulator {
     /**
      * 初始化数据库数据
      */
-    void initData();
+    void initData(boolean isInit);
 
     String url();
 
