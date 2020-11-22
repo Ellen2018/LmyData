@@ -96,7 +96,7 @@ public class RequestParams {
     }
 
 
-    enum RequestType{
+    public enum RequestType{
         POST,
         GET;
     }

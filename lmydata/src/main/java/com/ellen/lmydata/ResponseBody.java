@@ -2,6 +2,9 @@ package com.ellen.lmydata;
 
 public class ResponseBody {
     private int code;
+    /**
+     * 数据实体
+     */
     private String body;
 
     public int code() {
