@@ -41,6 +41,7 @@ public class LmyData {
                         callback.onSuccess(responseBody);
                     }
                 }
+                fixedThreadPool.shutdown();
             }
         });
 
