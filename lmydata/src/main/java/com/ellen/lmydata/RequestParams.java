@@ -2,6 +2,7 @@ package com.ellen.lmydata;
 
 import androidx.annotation.NonNull;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -91,6 +92,13 @@ public class RequestParams {
             requestParams.getFieldValues = getFieldValues;
             requestParams.requestType = requestType;
             requestParams.url = url;
+
+            if(requestParams.postFieldValues == null){
+                requestParams.postFieldValues = new HashMap<>();
+            }
+            if(requestParams.getFieldValues == null){
+                requestParams.getFieldValues = new HashMap<>();
+            }
             return requestParams;
         }
     }
